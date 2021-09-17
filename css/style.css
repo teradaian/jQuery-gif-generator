@@ -6,12 +6,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* add */
+    background-image: linear-gradient(to right top, #ffffff, #fbfbfb, #f6f6f6, #f2f2f2, #eeeeee);
 }
 
 div.container {
     width: 600px;
     height: 450px;
-    border: 2px solid #33C3F0;
+
+    border-radius: 47px;
+    background: linear-gradient(145deg, #e3e3e3, #ffffff);
+    box-shadow:  8px 8px 16px #eaeaea,
+                 -8px -8px 16px #ffffff;
+
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -20,13 +27,19 @@ div.container {
 
 div.title {
     margin-top: 2.5rem;
+    /* add */
+    color: #33C3F0;
+    font-family: 'Bebas Neue';
 }
 
 div.gif-container {
     height: 200px;
     width: 50%;
-    background-color: lightgray;
     margin-bottom: 1rem;
+    /* rm gray bg */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 div.input-form {
