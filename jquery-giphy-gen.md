@@ -148,6 +148,23 @@ Finally, we're going to create a container for our input form. Same as above, we
 Progress check! Your code should look like this: 
 <img src="assets/1-4-2.png">
 
+Let's make one small change to our CSS
+
+```css
+div.container {
+    width: 600px;
+    height: 450px;
+    border: 2px solid #33C3F0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* Add below: */
+    flex-direction: column;
+}
+```
+We give our container class `flex-direction:column` so that the items flow top to bottom vs. the default row's left to right. 
+
+
 ## 1.5 Skeleton Grid 
 
 Skeleton comes with a 12-column fluid grid that can mostly be handled in the HTML using classes. We'll be using it to stub up a pretty simple input form, but know that it can be used for a lot more! 
@@ -178,7 +195,31 @@ Great! We have some columns. Let's go ahead and add an input to the first one.
 ```
 The class "u-full-width" comes from skeleton, and makes the input take up the full available space it's given. We give the input a type of "text" as and a placeholder value. We also want to give it a value set to an empty string - we'll be needing this later once we want to use the value of what the user inputs! 
 
+Now we have an input, and we need a way to submit the data it's prepared to receive! In our second column, let's put the button we made earlier! 
 
+```html
+<button class="button-primary" type="submit">Search</button>
+```
+We'll rename it to something more semantic - Skeleton doesn't really help the user know what it does, after all. We can keep our 'button-primary' class, but we'll add `type="submit"`. Now, the button inside our form will try to submit form data (the inputs value) on click! 
+
+Finally, lets style our code! 
+
+```css
+div.title {
+    margin-top: 2.5rem;
+}
+
+div.gif-container {
+    height: 200px;
+    width: 50%;
+    background-color: lightgray;
+    margin-bottom: 1rem;
+}
+
+div.input-form {
+    margin-right: 4rem;
+}
+```
 
 
 
