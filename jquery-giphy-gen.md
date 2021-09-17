@@ -221,9 +221,15 @@ div.input-form {
     margin-right: 4rem;
 }
 ```
-Looking good 😎 But what does it do?
+Looking good 😎 
 
 ## Part 2: $jQuery
+
+At long last, let's add jQuery to our index.html!
+
+```html
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+```
 
 
 
