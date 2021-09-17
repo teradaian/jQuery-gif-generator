@@ -148,6 +148,38 @@ Finally, we're going to create a container for our input form. Same as above, we
 Progress check! Your code should look like this: 
 <img src="assets/1-4-2.png">
 
+## 1.5 Skeleton Grid 
+
+Skeleton comes with a 12-column fluid grid that can mostly be handled in the HTML using classes. We'll be using it to stub up a pretty simple input form, but know that it can be used for a lot more! 
+
+[More info on grid](http://getskeleton.com/#grid)
+
+First, we'll create a form, then inside of that we'll create a `div` with the class of 'row'.
+This creates a grid row. Inside of that row, we want to create two columns - one for our input, and one for the form's submit button. Skeleton uses the following class convention for columns:
+
+```html
+<div class="row">
+    <div class="<numberword> + <column(s)>"> </div>
+    <div class="<numberword> + <column(s)>"> </div>
+</div>
+```
+
+The total number of columns will equal 12! So, to make our input roughly 2/3s of the row, we can put: 
+```html
+<div class="row">
+    <div class="nine columns"> </div>
+    <div class="three columns"> </div>
+</div>
+```
+Great! We have some columns. Let's go ahead and add an input to the first one. 
+
+```html
+ <input class="u-full-width" type="text" value="" placeholder="Search Giphy">
+```
+The class "u-full-width" comes from skeleton, and makes the input take up the full available space it's given. We give the input a type of "text" as and a placeholder value. We also want to give it a value set to an empty string - we'll be needing this later once we want to use the value of what the user inputs! 
+
+
+
 
 
 <br>
