@@ -139,9 +139,16 @@ Here's how our container will be organized:
 
 <img src="assets/1-4.png">
 
-Let's get started from the top. We'll add a new `div` with a class of `title`, and inside of that we'll create an `h2` and give our page a title. How about 'Giphy Generator'? 
+Let's get started from the top. We'll add a new `div` with a class of 'title', and inside of that we'll create an `h2` and give our page a title. How about 'Giphy Generator'? 
 
-Below our `title` div, we want to add a recepticle for the gif we'll eventually be returning!
+Below our title `div`, we want to add a recepticle for the gif we'll eventually be returning! Let's create a `div` and give it a class of 'gif-container'
+
+Finally, we're going to create a container for our input form. Same as above, we'll make a new `div` and give it a class of 'input-form'.
+
+Progress check! Your code should look like this: 
+<img src="assets/1-4-2.png">
+
+
 
 <br>
 <br>
