@@ -12,9 +12,14 @@ const handleGetData = (e) => {
     const query = $input.val()
     $.ajax(`${BASE_URL}${query}&limit=${numLimit}&api_key=${API_KEY}`)
         .then(data => {
-            const randomGif = data.data[getRandNumBetween(1, numLimit - 1)].images.fixed_height.url
-            render(randomGif)
-            $input.val('')
+            if (data.data.length){
+                const randomGif = data.data[getRandNumBetween(1, numLimit - 1)].images.fixed_height.url
+                render(randomGif)
+                $input.val('')
+            } else {
+                $input.val('No Results Found')
+            }
+
         }), (err => {
             console.log(err)
         })
