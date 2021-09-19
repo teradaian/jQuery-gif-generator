@@ -283,17 +283,30 @@ The ? mark indicates the end of the URL resource path and the start of query par
 ‼️ Ok, hold up again. Why does api_key have a `&` in front of it? 
 The & mark is used for chaining parameters - hence why our first query parameter, the search keyword, doesn't have one. Each subsequent query parameter will have one in front of it. 
 
-What's next? Now we need to plug up our input so that whatever the user submits can dynamically update our API request. For that, we'll use jQuery, so we're going to pivot to getting that part of our APP built out next. Let's comment out our URL (for now) and 
-
+What's next? Now we need to plug in our input so that whatever the user submits can dynamically update our API request. For that, we'll use jQuery, so we're going to pivot to getting that part of our APP built out next. Let's comment out our URL (for now) and get started on tying everything together!
 
 
 ## Part 3: $jQuery
 
-At long last, let's add jQuery to our index.html!
+At long last, let's add jQuery to our index.html! 
 
 ```html
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 ```
+
+Now is a good time to stop and consider what aspects of the DOM we need access to in our JavaScript file. 
+
+We'll need to call a function when the user submits data.
+We'll need the value of that input.
+And we'll need a target for our return value - aka an `img` tag we can dynamically update the `src` of. 
+
+```javascript
+const $input = $('input')
+const $form = $('form')
+const $img = $('img')
+```
+
+For bigger apps with multiple inputs or forms, we'd want to be more specific- however for a small app like this, we can just use element selectors. 
 
 
 

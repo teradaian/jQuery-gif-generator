@@ -4,7 +4,7 @@ const notFoundGif = 'https://media1.giphy.com/media/baPIkfAo0Iv5K/200.gif'
 const numLimit = 20
 const $input = $('input')
 const $form = $('form')
-const $gifUrl = $('img')
+const $img = $('img')
 
 const getRandNumBetween = (min,max) => Math.floor(Math.random()*(max-min+1)+min);
 
@@ -30,5 +30,5 @@ const handleGetData = (e) => {
 $form.on('submit', handleGetData)
 
 function render(gif) {
-    $('img').attr("src", gif)
+    $img.attr("src", gif)
 }
