@@ -468,7 +468,7 @@ Try it out! Pretty cool! 😎
 <br>
 
 
-## 3.3 Optimizations and Finishing Touches
+## 3.3 Optimizations and Finishing Touches (bonus)
 
 Awesome, we have a working app! However, it's always good to anticipate some edge cases or issues. For instance, what happens when the user inputs something so esoteric that even the vast database of gifs at Giphy returns with no results.
 
@@ -506,6 +506,55 @@ const handleGetData = event => {
 ```
 
 Much better! 
+
+Finally, let's add a bit of styling flair! We can go to Neumorphism to generate a really cool box-shadow effect. mycolor-space will let us generate a gradient for our bg. I decided to go very minimal, but play around with the options and go wild! We can use google fonts to change up our title font as well! 
+
+In style.css: 
+
+```css
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* add */
+    background-image: linear-gradient(to right top, #ffffff, #fbfbfb, #f6f6f6, #f2f2f2, #eeeeee);
+}
+```
+
+```css
+div.container {
+    width: 600px;
+    height: 450px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    /* add */
+    border-radius: 47px;
+    background: linear-gradient(145deg, #e3e3e3, #ffffff);
+    box-shadow:  8px 8px 16px #eaeaea,
+                 -8px -8px 16px #ffffff;
+}
+```
+
+```css
+div.title {
+    margin-top: 2.5rem;
+    /* add */
+    color: #33C3F0;
+    font-family: 'Bebas Neue';
+}
+
+div.gif-container {
+    height: 200px;
+    width: 50%;
+    margin-bottom: 1rem;
+    /* rm gray bg */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
 
 ## 3.4 Celebrate
 

@@ -13,16 +13,15 @@ body {
 div.container {
     width: 600px;
     height: 450px;
-
-    border-radius: 47px;
-    background: linear-gradient(145deg, #e3e3e3, #ffffff);
-    box-shadow:  8px 8px 16px #eaeaea,
-                 -8px -8px 16px #ffffff;
-
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
+    /* add */
+    border-radius: 47px;
+    background: linear-gradient(145deg, #e3e3e3, #ffffff);
+    box-shadow:  8px 8px 16px #eaeaea,
+                 -8px -8px 16px #ffffff;
 }
 
 div.title {
