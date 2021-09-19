@@ -14,6 +14,7 @@ const handleGetData = event => {
     $.ajax(`${BASE_URL}?q=${query}&limit=${limit}&api_key=${API_KEY}`)
         .then(data => {
             if (data.data.length){
+                console.log(data)
                 const randomIndex = getRandNumBetween(0, limit - 1)
                 const randomGif = data.data[randomIndex].images.fixed_height.url
                 render(randomGif)

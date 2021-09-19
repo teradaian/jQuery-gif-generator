@@ -345,6 +345,12 @@ The then() method returns a Promise. It takes up to two arguments: callback func
 For our success case, let's simply `console.log` the data so we can take a look at what is being returned from our API call.
 For the failure case, we can simple log the resulting error, as above. 
 
+Finally, we need to make sure we actually call our new function! When do we want to call it? When the user submits data! We can use jQuery's `.on` method to attached a " submit" type event listener, which will fire off our handleGetData handler function. 
+
+```javascript
+$form.on('submit', handleGetData)
+```
+
 ## 3.2 Shaping our data
 
 So, let's try this out! Typing a word into the input in the browser, and hit submit. Nothing should have happened yet- let's open the console though! 
@@ -386,6 +392,55 @@ Now, inside of our `.then()`'s success callback function, we can add
 const randomIndex = getRandNumBetween(0, limit - 1)
 ```
 This will give us a random number between 0 and 19, but will dynamically change if we raise or lower the limit. Essentially, we now have a random index we can use to select a gif with, from the returned array of gif options. 
+
+Next, let's go ahead and grab the url data that we want. For our purposes, we'll make use of Gihpy's fixed height url, so that we can minimize display issues! All of the images will come back the same height, and we'll allow the widths to fluxuate as needed. 
+
+Where is that data at? 
+
+<img src="assets/3-2-3.png">
+
+Inside our data object is an array of gif objects called 'data'. Inside each of those objects is a ton of other data and nested objects. If we expand the 'images' object, we see even more nested objects! Finally, if we expand fixed_height, we see the url we seek! So, let's grab that url and assign it to a variable that we can pass to our render function:
+
+```javascript
+const randomGif = data.data[randomIndex].images.fixed_height.url
+```
+
+But hold up, you say. What render function? Good point, we don't have one yet! Let's address that next. 
+
+Our render function for this app has a very simple job- it's purpose is to take a url and assign it as the source of our `img` element. 
+
+```javascript
+function render(gif) {
+    $img.attr("src", gif)
+}
+```
+
+Now, we can pass our `randomGif` variable to render! 
+
+```javascript
+render(randomGif)
+```
+
+and while we're at it, let's go ahead and reset our input value so that our users don't have to delete their last query to put a new one in! 
+
+```javascript
+const handleGetData = event => {
+    event.preventDefault();
+    const query = $input.val()
+    $.ajax(`${BASE_URL}?q=${query}&limit=${limit}&api_key=${API_KEY}`)
+        .then(data => {
+                const randomIndex = getRandNumBetween(0, limit - 1)
+                const randomGif = data.data[randomIndex].images.fixed_height.url
+                render(randomGif)
+                $input.val('')
+        }), (err => {
+            console.log(err)
+        })
+}
+```
+
+Try it out! Pretty cool! 
+
 
 
 
