@@ -223,13 +223,79 @@ div.input-form {
 ```
 Looking good 😎 
 
-## Part 2: $jQuery
+# Part 2: The Giphy API
+
+## 2.1 Signing Up
+
+<img src="assets/2-1.png">
+
+For this app we'll be using the Giphy API! If you already have a Giphy API key, you can skip this step!
+
+[https://developers.giphy.com/](https://developers.giphy.com/)
+
+Click "Create An App", then select "Sign Up". After you put in an email and password, Giphy will send you an email to authenticate the account. Follow the instructions there, and you should be greeted by a screen like this: 
+
+<img src="assets/2-2.png">
+
+Now, we're need to go back to the [API page](https://developers.giphy.com/docs/sdk/)
+
+At the top right of the screen, next to the dropdown menu, click the "Create An App" button. On the following screen, it will ask you to select between the SDK and the API options. 
+
+Select API (it's more than enough for what we need) and click next. It will ask you for an App name and description, put what you like here and click next! 
+
+Now, at long last, you'll be granted an API key! Let's open up our script.js, and assign our API key to a variable. 
+
+```javascript
+const API_KEY = '<your api key here as a string>'
+```
+
+Great, now we've got that for when the time comes to use it! 
+
+Before we move into making an API call, let's go ahead and examine what our endpoint will look like! Thankfully, Giphy has excellent documentation. From the top nav, let's select "Docs".
+
+There's a lot to read through here, for today we're going to skip ahead and find the Search Endpoint. Giphy API -> API Endpoints -> Search Endpoint. 
+
+This endpoint will allow us to take input from the user and enter it as a search query. It requires a query string and an API key, and allows for an optional parameter which sets a limit to the results we get back.
+
+Since we'll be using this same starting address for all of our calls, we can go ahead and save it to a variable as our base url, in script.js:
+
+```javascript
+const BASE_URL = 'https://api.giphy.com/v1/gifs/search'
+```
+
+Per the docs: 
+
+```
+The search keyword should be sent to GIPHY in &q parameter in the API call.
+```
+
+So, we could build out an API call like so:
+
+```javascript
+`${BASE_URL}?q=mysearchquery&api_key=${API_KEY}`
+```
+
+Whatever we manually type after `q=` will be the search term that Gihpy uses to return data to us! 
+
+❗Hold up, what is that '?' doing in there? 
+The ? mark indicates the end of the URL resource path and the start of query parameters. We'll be specifying the results we want using numerous query parameters- the first of which is our search term. 
+
+‼️ Ok, hold up again. Why does api_key have a `&` in front of it? 
+The & mark is used for chaining parameters - hence why our first query parameter, the search keyword, doesn't have one. Each subsequent query parameter will have one in front of it. 
+
+What's next? Now we need to plug up our input so that whatever the user submits can dynamically update our API request. For that, we'll use jQuery, so we're going to pivot to getting that part of our APP built out next. Let's comment out our URL (for now) and 
+
+
+
+## Part 3: $jQuery
 
 At long last, let's add jQuery to our index.html!
 
 ```html
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 ```
+
+
 
 
 
