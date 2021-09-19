@@ -1,10 +1,10 @@
 const BASE_URL = 'https://api.giphy.com/v1/gifs/search?q='
 const API_KEY = 'H37gvoK5hDZU8GAWYktJwgIJRZu4zaA0'
 const notFoundGif = 'https://media1.giphy.com/media/baPIkfAo0Iv5K/200.gif'
+const numLimit = 20
 const $input = $('input')
 const $form = $('form')
 const $gifUrl = $('img')
-let numLimit = 20
 
 const getRandNumBetween = (min,max) => Math.floor(Math.random()*(max-min+1)+min);
 
