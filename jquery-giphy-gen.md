@@ -349,6 +349,8 @@ For the failure case, we can simple log the resulting error, as above.
 
 So, let's try this out! Typing a word into the input in the browser, and hit submit. Nothing should have happened yet- let's open the console though! 
 
+<img src="assets/3-2.png">
+
 
 
 
