@@ -350,9 +350,42 @@ For the failure case, we can simple log the resulting error, as above.
 So, let's try this out! Typing a word into the input in the browser, and hit submit. Nothing should have happened yet- let's open the console though! 
 
 <img src="assets/3-2.png">
+👀
+<img src="assets/3-2-2.png">
 
+We're getting a hit! Our API call was successful! But, we're getting back a TON of data- we don't really need 50 results! Let's go ahead and add a cap to the number of results we're getting. According to the Giphy docs, we can use the &limit query parameter to set a limit! Let's add that in now:
 
+```javascript
+$.ajax(`${BASE_URL}?q=${query}&limit=20&api_key=${API_KEY}`)
+```
 
+Enter a phrase again, and check the logs - nice, we're only getting 20 back! 
+
+Ok, let's consider our next goal. We want the returned gif to be somewhat random, but also related to the users query. What if we just picked from the array of gifs in our data object at random? 
+
+We could generate a random number inside our function, but let's go ahead and make a helper function for it. While we're at it, let's move the number we want to limit searchs by to a variable, so we can dynamically change it's value later if we want.
+
+```javascript
+const limit = 20
+```
+
+```javascript
+const getRandNumBetween = (min,max) => Math.floor(Math.random()*(max-min+1)+min)
+```
+We'll just use a generic random number generator. 
+
+And refactor our API call as follows: 
+
+```javascript
+$.ajax(`${BASE_URL}?q=${query}&limit=${limit}&api_key=${API_KEY}`)
+```
+
+Now, inside of our `.then()`'s success callback function, we can add 
+
+```javascript
+const randomIndex = getRandNumBetween(0, limit - 1)
+```
+This will give us a random number between 0 and 19, but will dynamically change if we raise or lower the limit. Essentially, we now have a random index we can use to select a gif with, from the returned array of gif options. 
 
 
 
