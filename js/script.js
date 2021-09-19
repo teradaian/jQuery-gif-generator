@@ -1,5 +1,6 @@
 const BASE_URL = 'https://api.giphy.com/v1/gifs/search?q='
 const API_KEY = 'H37gvoK5hDZU8GAWYktJwgIJRZu4zaA0'
+const notFoundGif = 'https://media1.giphy.com/media/baPIkfAo0Iv5K/200.gif'
 const $input = $('input')
 const $form = $('form')
 const $gifUrl = $('img')
@@ -13,13 +14,14 @@ const handleGetData = (e) => {
     $.ajax(`${BASE_URL}${query}&limit=${numLimit}&api_key=${API_KEY}`)
         .then(data => {
             if (data.data.length){
-                const randomGif = data.data[getRandNumBetween(1, numLimit - 1)].images.fixed_height.url
+                const randomIndex = getRandNumBetween(1, numLimit -1)
+                const randomGif = data.data[randomIndex].images.fixed_height.url
                 render(randomGif)
                 $input.val('')
             } else {
+                render(notFoundGif)
                 $input.val('No Results Found')
             }
-
         }), (err => {
             console.log(err)
         })
