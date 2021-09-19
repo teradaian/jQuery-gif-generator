@@ -40,7 +40,7 @@ You're ready to go! 🚀
 Skeleton bills itself as "a dead simple, responsive design". We can use it to quickly add a polished look to a small project! 
 
 Why Skeleton? It's lightweight, easy to use, and there's zero installing or compiling required to get it up and running. 
-It doesn't have the large number of components that frameworks like Bootstrap provide, but it does provide some useful tools!
+It doesn't have the large number of components that frameworks like Bootstrap provides, but it does provide some useful tools!
 
 Sold? Let's get it hooked up!
 
@@ -65,6 +65,10 @@ One final thing - Skeleton uses the Railway font by default! Lets add that above
 
 <img src="assets/1-1.png">
 Our link order should look like this 
+
+<br>
+<br>
+
 
 ## 1.2 Sanity Check!
 
@@ -131,13 +135,17 @@ If we want to move our button itself to the center of the container, we'll need 
 
 Everything is centered!
 
+<br>
+<br>
+
+
 ## 1.4 Layout pt.2
 
 Let's move back over to our HTML, and build out the basic structure for our container! 
 
 Here's how our container will be organized: 
 
-<img src="assets/1-4.png">
+<img src="assets/1-4.png" height='200px'>
 
 Let's get started from the top. We'll add a new `div` with a class of 'title', and inside of that we'll create an `h2` and give our page a title. How about 'Giphy Generator'? 
 
@@ -164,6 +172,9 @@ div.container {
 ```
 We'll make the container a flex, then give our container class `flex-direction:column` so that the items flow top to bottom vs. the default row's left to right. 
 Then we'll use `justify-content: space-around` to give even spacing around each of our divs. Because we've changed the flex-direction to column, justify-content will target the vertical axis instead of the horizontal axis, which is default. 
+
+<br>
+<br>
 
 
 ## 1.5 Skeleton Grid 
@@ -222,6 +233,10 @@ div.input-form {
 }
 ```
 Looking good 😎 
+
+<br>
+<br>
+
 
 ## Part 2: The Giphy API
 
@@ -284,6 +299,10 @@ The ? mark indicates the end of the URL resource path and the start of query par
 The & mark is used for chaining parameters - hence why our first query parameter, the search keyword, doesn't have one. Each subsequent query parameter will have one in front of it. 
 
 What's next? Now we need to plug in our input so that whatever the user submits can dynamically update our API request. For that, we'll use jQuery, so we're going to pivot to getting that part of our APP built out next. Let's comment out our URL (for now) and get started on tying everything together!
+
+<br>
+<br>
+
 
 
 ## Part 3: $jQuery
@@ -350,6 +369,9 @@ Finally, we need to make sure we actually call our new function! When do we want
 ```javascript
 $form.on('submit', handleGetData)
 ```
+<br>
+<br>
+
 
 ## 3.2 Shaping our data
 
@@ -378,6 +400,7 @@ const limit = 20
 ```javascript
 const getRandNumBetween = (min,max) => Math.floor(Math.random()*(max-min+1)+min)
 ```
+
 We'll just use a generic random number generator. 
 
 And refactor our API call as follows: 
@@ -439,14 +462,57 @@ const handleGetData = event => {
 }
 ```
 
-Try it out! Pretty cool! 
-
-
-
+Try it out! Pretty cool! 😎
 
 <br>
 <br>
 
 
-## Bonus
+## 3.3 Optimizations and Finishing Touches
+
+Awesome, we have a working app! However, it's always good to anticipate some edge cases or issues. For instance, what happens when the user inputs something so esoteric that even the vast database of gifs at Giphy returns with no results.
+
+As it stands, our app will quietly fail and wait for the next input. But, that's some pretty lousy UI! Why don't we check to see if the array coming back from our API call has any results, and if not, render a generic gif and a message to the user. 
+
+Easily done! In our success callback, we can just check if the data array has a length of anything other than 0. If there are any results, we simply run our existing code block. If the length of the array is 0, however, then the if check evaluates to false and we can instead render a static url. Let's use this one: 
+
+```javascript
+const notFoundGif = 'https://media1.giphy.com/media/baPIkfAo0Iv5K/200.gif'
+```
+
+There's a few ways to go about adding user feedback messages - since we've already selected our input element, let's just change the value to read 'No Results Found'
+
+Our refactored handleGetData function: 
+
+```javascript
+const handleGetData = event => {
+    event.preventDefault();
+    const query = $input.val()
+    $.ajax(`${BASE_URL}?q=${query}&limit=${limit}&api_key=${API_KEY}`)
+        .then(data => {
+            if (data.data.length){
+                const randomIndex = getRandNumBetween(0, limit - 1)
+                const randomGif = data.data[randomIndex].images.fixed_height.url
+                render(randomGif)
+                $input.val('')
+            } else {
+                render(notFoundGif)
+                $input.val('No Results Found')
+            }
+        }), (err => {
+            console.log(err)
+        })
+}
+```
+
+Much better! 
+
+## 3.4 Celebrate
+
+🥳 🥳
+
+
+<br>
+<br>
+
 
