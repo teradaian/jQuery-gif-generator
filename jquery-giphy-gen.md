@@ -223,7 +223,7 @@ div.input-form {
 ```
 Looking good 😎 
 
-# Part 2: The Giphy API
+## Part 2: The Giphy API
 
 ## 2.1 Signing Up
 
@@ -288,6 +288,8 @@ What's next? Now we need to plug in our input so that whatever the user submits 
 
 ## Part 3: $jQuery
 
+# 3.1
+
 At long last, let's add jQuery to our index.html! 
 
 ```html
@@ -296,9 +298,11 @@ At long last, let's add jQuery to our index.html!
 
 Now is a good time to stop and consider what aspects of the DOM we need access to in our JavaScript file. 
 
-We'll need to call a function when the user submits data.
-We'll need the value of that input.
-And we'll need a target for our return value - aka an `img` tag we can dynamically update the `src` of. 
+We'll need to call a function when the user submits data,
+We'll need the value of the input they're submitting,
+and! we'll need a target for our return value - aka an `img` tag we can dynamically update the `src` of. 
+
+Let's go ahead and cache those elements now!
 
 ```javascript
 const $input = $('input')
@@ -306,7 +310,45 @@ const $form = $('form')
 const $img = $('img')
 ```
 
-For bigger apps with multiple inputs or forms, we'd want to be more specific- however for a small app like this, we can just use element selectors. 
+For bigger apps with multiple inputs or forms, we'd want to be more specific- however for a small app like this, we can just use element selectors! Let's keep things as simple as possible.
+
+Alright, let's get started on our handleGetData function - this will be the callback function we give to our form element, when the user submits data. 
+
+First, we want to prevent the default behavior of form submission, which is a page refresh. We can accomplish this by using `event.preventDefault()`
+Remember that event is a parameter name, so you can name it anything you like. `e` or `evt` are conventional abbreviations, but you'll see `event` from time to time as well. We'll use `event`. 
+
+Next, let's assign a variable, `query` to the value of our input element. This corresponds directly to the `value` property on the `input` element. We initilized it with an empty string, but as the user inputs data, the value property will change to reflect that data. When the user submits, we want to take the string stored there, and assign it to `query`. 
+
+We could omit this step, and place $input.val() directly into our ajax request. However, assinging it to a semantic variable will make our URL easier to read and understand, so we opt to do so for this example app. 
+
+Finally, we make our ajax call, inserting our `query` variable as the search query: 
+
+```javascript
+const handleGetData = event => {
+    event.preventDefault();
+    const query = $input.val()
+    $.ajax(`${BASE_URL}?q=${query}&api_key=${API_KEY}`)
+        .then(data => {
+            console.log(data)
+        }), (err => {
+            console.log(err)
+        })
+}
+```
+
+We can chain a `.then` onto our API call and give it callback functions to handle the returned data. 
+
+From the MDN Docs:
+
+The then() method returns a Promise. It takes up to two arguments: callback functions for the success and failure cases of the Promise.
+
+For our success case, let's simply `console.log` the data so we can take a look at what is being returned from our API call.
+For the failure case, we can simple log the resulting error, as above. 
+
+## 3.2 Shaping our data
+
+So, let's try this out! Typing a word into the input in the browser, and hit submit. Nothing should have happened yet- let's open the console though! 
+
 
 
 
