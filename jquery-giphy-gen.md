@@ -149,7 +149,14 @@ Here's how our container will be organized:
 
 Let's get started from the top. We'll add a new `div` with a class of 'title', and inside of that we'll create an `h2` and give our page a title. How about 'Giphy Generator'? 
 
-Below our title `div`, we want to add a recepticle for the gif we'll eventually be returning! Let's create a `div` and give it a class of 'gif-container'
+Below our title `div`, we want to add a recepticle for the gif we'll eventually be returning! Let's create a `div` and give it a class of 'gif-container'. 
+
+We can add an empty image for now: 
+```html
+    <div class="gif-container">
+        <img src="">
+    </div>
+```
 
 Finally, we're going to create a container for our input form. Same as above, we'll make a new `div` and give it a class of 'input-form'.
 
@@ -184,21 +191,26 @@ Skeleton comes with a 12-column fluid grid that can mostly be handled in the HTM
 [More info on grid](http://getskeleton.com/#grid)
 
 First, we'll create a form, then inside of that we'll create a `div` with the class of 'row'.
+
 This creates a grid row. Inside of that row, we want to create two columns - one for our input, and one for the form's submit button. Skeleton uses the following class convention for columns:
 
 ```html
+<form>
 <div class="row">
     <div class="<numberword> + <column(s)>"> </div>
     <div class="<numberword> + <column(s)>"> </div>
 </div>
+</form>
 ```
 
 The total number of columns will equal 12! So, to make our input roughly 2/3s of the row, we can put: 
 ```html
+<form>
 <div class="row">
     <div class="nine columns"> </div>
     <div class="three columns"> </div>
 </div>
+</form>
 ```
 Great! We have some columns. Let's go ahead and add an input to the first one. 
 
